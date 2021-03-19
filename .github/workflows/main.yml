@@ -31,16 +31,15 @@ jobs:
       
     - name: Mod G9550 kernel
       run: |   
-        ./build/unpackimg.sh ./build/G9550.img
-        cp -R ./out/arch/arm64/boot/Image.gz-dtb ./build/split_img/
-        rm -rf ./build/split_img/boot.img-zImage
-        mv ./build/split_img/Image.gz-dtb ./build/split_img/boot.img-zImage
-        cd build
-        ./repackimg.sh
-        mv ./build/image-new.img build/zip/boot.img
+        build/unpackimg.sh build/G9550.img
+        cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img/
+        rm -rf build/split_img/boot.img-zImage
+        mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
+        build/repackimg.sh
+        mv build/image-new.img build/zip/boot.img
         cd build
         cd zip
-        ./build/cleanup.sh
+        build/cleanup.sh
       
     - uses: actions/upload-artifact@v2
       with:
@@ -61,16 +60,15 @@ jobs:
         
     - name: Mod G9500 kernel
       run: |   
-        ./build/unpackimg.sh ./build/G9500.img
-        cp -R ./out/arch/arm64/boot/Image.gz-dtb ./build/split_img/
-        rm -rf ./build/split_img/boot.img-zImage
-        mv ./build/split_img/Image.gz-dtb ./build/split_img/boot.img-zImage
-        cd build
-        ./repackimg.sh
-        mv ./build/image-new.img build/zip/boot.img
+        build/unpackimg.sh build/G9500.img
+        cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img/
+        rm -rf build/split_img/boot.img-zImage
+        mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
+        build/repackimg.sh
+        mv build/image-new.img build/zip/boot.img
         cd build
         cd zip
-        ./build/cleanup.sh
+        build/cleanup.sh
   
     - uses: actions/upload-artifact@v2
       with:
@@ -91,16 +89,15 @@ jobs:
         
     - name: Mod N9500 kernel
       run: |   
-        ./build/unpackimg.sh ./build/N9500.img
-        cp -R ./out/arch/arm64/boot/Image.gz-dtb ./build/split_img/
-        rm -rf ./build/split_img/boot.img-zImage
-        mv ./build/split_img/Image.gz-dtb ./build/split_img/boot.img-zImage
-        cd build
-        ./repackimg.sh
-        mv ./build/image-new.img build/zip/boot.img
+        build/unpackimg.sh build/N9500.img
+        cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img/
+        rm -rf build/split_img/boot.img-zImage
+        mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
+        build/repackimg.sh
+        mv build/image-new.img build/zip/boot.img
         cd build
         cd zip
-        ./build/cleanup.sh
+        build/cleanup.sh
   
     - uses: actions/upload-artifact@v2
       with:
