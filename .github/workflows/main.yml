@@ -1,0 +1,36 @@
+name: NeoKernel Builder
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: for aarch64
+      run: sudo apt-get install ccache && mkdir -p ../PLATFORM/prebuilts/gcc/linux-x86/aarch64 && git clone  https://github.com/djb77/aarch64-linux-android-4.9 ../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+    - name: make kernel
+      run: ./build_kernel.sh
+      
+    - name: Mod kernel
+      run: |
+        cd build
+        ./unpackimg.sh boot.img
+        cp -R arch/arm64/boot/Image.gz-dtb build/split_img
+        rm -rf build/split_img/boot.img-zImage
+        mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
+        ./repackimg.sh
+        mv image-new.img build/zip/boot.img
+        zip -r -q -y data META-INF boot.img
+        ./cleanup.sh
+      
+    - uses: actions/upload-artifact@v2
+      with:
+        name: G9550.img
+        path: build/
