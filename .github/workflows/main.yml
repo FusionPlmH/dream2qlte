@@ -17,18 +17,16 @@ jobs:
     - uses: actions/checkout@v2
     - name: for aarch64
       run: sudo apt-get install ccache && mkdir -p ../PLATFORM/prebuilts/gcc/linux-x86/aarch64 && git clone  https://github.com/djb77/aarch64-linux-android-4.9 ../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
-    - name: preparel
-      run:  |  
+    
+    - name: Make G9550 kernel
+      run:  |       
         export ARCH=arm64
         export BUILD_CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
         export BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
         export ANDROID_MAJOR_VERSION=p
         export PLATFORM_VERSION=9.0.0
         mkdir out 
-        chmod -R 777 out
-    
-    - name: Make G9550 kernel
-      run:  |          
+        chmod -R 777 out      
         make -C $(pwd) O=$(pwd)/out -j$BUILD_JOB_NUMBER ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE KCFLAGS=-mno-android  dream2qlte_chn_open_defconfig
         make -C $(pwd) O=$(pwd)/out -j$BUILD_JOB_NUMBER ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE KCFLAGS=-mno-android
       
@@ -54,7 +52,14 @@ jobs:
       run: rm -rf build/zip/boot.img       
         
     - name: Make G9500 kernel
-      run:  |          
+      run:  |   
+        export ARCH=arm64
+        export BUILD_CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+        export BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
+        export ANDROID_MAJOR_VERSION=p
+        export PLATFORM_VERSION=9.0.0
+        mkdir out 
+        chmod -R 777 out      
         make -C $(pwd) O=$(pwd)/out -j$BUILD_JOB_NUMBER ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE KCFLAGS=-mno-android  dreamqlte_chn_open_defconfig
         make -C $(pwd) O=$(pwd)/out -j$BUILD_JOB_NUMBER ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE KCFLAGS=-mno-android
       
@@ -80,7 +85,14 @@ jobs:
       run: rm -rf build/zip/boot.img  
 
     - name: Make N9500 kernel
-      run:  |          
+      run:  |
+        export ARCH=arm64
+        export BUILD_CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+        export BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
+        export ANDROID_MAJOR_VERSION=p
+        export PLATFORM_VERSION=9.0.0
+        mkdir out 
+        chmod -R 777 out      
         make -C $(pwd) O=$(pwd)/out -j$BUILD_JOB_NUMBER ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE KCFLAGS=-mno-android  greatqlte_chn_open_defconfig
         make -C $(pwd) O=$(pwd)/out -j$BUILD_JOB_NUMBER ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE KCFLAGS=-mno-android
       
