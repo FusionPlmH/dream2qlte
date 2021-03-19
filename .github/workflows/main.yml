@@ -29,7 +29,6 @@ jobs:
         cd build
         cd zip
         zip -r -q -y kernel.zip data META-INF boot.img
-        ./build/cleanup.sh
       
     - uses: actions/upload-artifact@v2
       with:
