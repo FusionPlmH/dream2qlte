@@ -31,5 +31,5 @@ jobs:
       
     - uses: actions/upload-artifact@v2
       with:
-        name: kernel
+        name: SM-G9550
         path: build/zip/
