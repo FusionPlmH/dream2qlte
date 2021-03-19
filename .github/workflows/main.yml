@@ -20,14 +20,14 @@ jobs:
       
     - name: Mod kernel
       run: |
+        cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img
         cd build
         ./unpackimg.sh boot.img
-        cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img
         rm -rf build/split_img/boot.img-zImage
         mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
         ./repackimg.sh
         mv image-new.img build/zip/boot.img
-        zip -r -q -y data META-INF boot.img
+        zip -r -q -y kernel.zip data META-INF boot.img
         ./cleanup.sh
       
     - uses: actions/upload-artifact@v2
