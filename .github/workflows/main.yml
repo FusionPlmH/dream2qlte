@@ -28,9 +28,8 @@ jobs:
         mv ./build/image-new.img build/zip/boot.img
         cd build
         cd zip
-        zip -r -q -y kernel.zip data META-INF boot.img
       
     - uses: actions/upload-artifact@v2
       with:
-        name: kernel.zip
+        name: kernel
         path: build/zip/
