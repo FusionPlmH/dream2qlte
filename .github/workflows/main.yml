@@ -19,18 +19,19 @@ jobs:
       run: ./build_kernel.sh
       
     - name: Mod kernel
-      run: |
-        cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img
+      run: |   
+        ./build/unpackimg.sh ./build/boot.img
+        cp -R ./out/arch/arm64/boot/Image.gz-dtb ./build/split_img/
+        rm -rf ./build/split_img/boot.img-zImage
+        mv ./build/split_img/Image.gz-dtb ./build/split_img/boot.img-zImage
+        ./build/repackimg.sh
+        mv ./build/image-new.img build/zip/boot.img
         cd build
-        ./unpackimg.sh boot.img
-        rm -rf build/split_img/boot.img-zImage
-        mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
-        ./repackimg.sh
-        mv image-new.img build/zip/boot.img
+        cd zip
         zip -r -q -y kernel.zip data META-INF boot.img
-        ./cleanup.sh
+        ./build/cleanup.sh
       
     - uses: actions/upload-artifact@v2
       with:
         name: kernel.zip
-        path: build/
+        path: build/zip/
