@@ -19,7 +19,8 @@ jobs:
       run: sudo apt-get install ccache && mkdir -p ../PLATFORM/prebuilts/gcc/linux-x86/aarch64 && git clone  https://github.com/djb77/aarch64-linux-android-4.9 ../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
     
     - name: Make G9550 kernel
-      run:  |       
+      run:  |
+        make clean && make mrproper
         export ARCH=arm64
         export BUILD_CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
         export BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
@@ -53,7 +54,8 @@ jobs:
       run: rm -rf build/zip/boot.img       
         
     - name: Make G9500 kernel
-      run:  |   
+      run:  |
+        make clean && make mrproper
         export ARCH=arm64
         export BUILD_CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
         export BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
@@ -86,6 +88,7 @@ jobs:
 
     - name: Make N9500 kernel
       run:  |
+        make clean && make mrproper
         export ARCH=arm64
         export BUILD_CROSS_COMPILE=$(pwd)/../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
         export BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
