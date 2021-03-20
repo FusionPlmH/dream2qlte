@@ -38,7 +38,7 @@ jobs:
         cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img/
         rm -rf build/split_img/boot.img-zImage
         mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
-        bash build/ramdisk.sh
+        sudo bash build/ramdisk.sh
         build/repackimg.sh
         mv build/image-new.img build/zip/boot.img
         build/cleanup.sh
@@ -70,7 +70,7 @@ jobs:
         cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img/
         rm -rf build/split_img/boot.img-zImage
         mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
-        bash build/ramdisk.sh
+        sudo bash build/ramdisk.sh
         build/repackimg.sh
         mv build/image-new.img build/zip/boot.img
         build/cleanup.sh
@@ -102,7 +102,7 @@ jobs:
         cp -R out/arch/arm64/boot/Image.gz-dtb build/split_img/
         rm -rf build/split_img/boot.img-zImage
         mv build/split_img/Image.gz-dtb build/split_img/boot.img-zImage
-        bash build/ramdisk.sh
+        sudo bash build/ramdisk.sh
         build/repackimg.sh
         mv build/image-new.img build/zip/boot.img
         build/cleanup.sh
