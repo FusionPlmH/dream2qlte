@@ -8,5 +8,5 @@ sed -i '/secure/d' build/ramdisk/default.prop
 
 sed -i '/debuggable/d' build/ramdisk/default.prop
 
-cat build/ramdiskmod/propmod >> build/ramdisk/default.prop
+cat build/propmod >> build/ramdisk/default.prop
 
