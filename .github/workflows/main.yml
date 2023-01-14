@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3.3.0
     - name: for aarch64
       run:  |
         sudo apt-get -y install gcc-9
@@ -46,6 +46,7 @@ jobs:
         mv build/image-new.img build/zip/boot.img
         build/cleanup.sh
         zip build/output/Neo-Kernel-SM_G9550.zip build/zip
+      
         
     - name: Make G9500 kernel
       run:  |
@@ -101,9 +102,8 @@ jobs:
         build/cleanup.sh
         zip build/output/Neo-Kernel-SM_N9500.zip build/zip
       
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v3.1.2
       with:
-        name: ALL-Model
         path: build/output/
         
 
