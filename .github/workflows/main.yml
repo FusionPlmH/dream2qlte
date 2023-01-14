@@ -1,9 +1,9 @@
 name: NeoKernel Builder
 
 on:
-  push:
-  pull_request:
-    branches: [ master ]
+#  push:
+#  pull_request:
+#    branches: [ master ]
   watch:
     types: started
 
