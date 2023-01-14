@@ -44,7 +44,7 @@ jobs:
         build/repackimg.sh
         mv build/image-new.img build/zip/boot.img
         build/cleanup.sh
-        zip build/output/Neo-Kernel-SM_G9550.zip build/zip/*
+        zip -r build/output/Neo-Kernel-SM_G9550.zip build/zip
       
         
     - name: Make G9500 kernel
@@ -72,7 +72,7 @@ jobs:
         build/repackimg.sh
         mv build/image-new.img build/zip/boot.img
         build/cleanup.sh
-        zip build/output/Neo-Kernel-SM_G9500.zip build/zip/*
+        zip -r build/output/Neo-Kernel-SM_G9500.zip build/zip
         
     - name: Make N9500 kernel
       run:  |
@@ -99,7 +99,7 @@ jobs:
         build/repackimg.sh
         mv build/image-new.img build/zip/boot.img
         build/cleanup.sh
-        zip build/output/Neo-Kernel-SM_N9500.zip build/zip/*
+        zip -r build/output/Neo-Kernel-SM_N9500.zip build/zip
       
     - uses: actions/upload-artifact@v3.1.2
       with:
