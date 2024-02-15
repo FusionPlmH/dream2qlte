@@ -17,7 +17,7 @@ jobs:
     - name: for aarch64
       run:  |
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100
-        sudo apt-get -y install python2 ccache && mkdir -p ../PLATFORM/prebuilts/gcc/linux-x86/aarch64 && git clone  https://github.com/djb77/aarch64-linux-android-4.9 ../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+        sudo apt-get -y install python2 ccache && mkdir -p ../PLATFORM/prebuilts/gcc/linux-x86/aarch64 && git clone  https://github.com/FusionPlmH/aarch64-linux-android-4.9 ../PLATFORM/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
     
     - name: Make G9550 kernel
       run:  |
@@ -101,7 +101,7 @@ jobs:
         build/cleanup.sh
         zip -r build/output/Neo-Kernel-SM_N9500.zip build/zip
       
-    - uses: actions/upload-artifact@v3.1.2
+    - uses: actions/upload-artifact@v4.3.1
       with:
         path: build/output/
         
