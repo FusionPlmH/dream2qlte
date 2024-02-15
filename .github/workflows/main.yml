@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
-    - uses: actions/checkout@v3.3.0
+    - uses: actions/checkout@v4.1.1
     - name: for aarch64
       run:  |
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100
